@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IEM UMPSA Admin Portal</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+  <script src="auth.js"></script>
+  <script>IEMAdminAuth.requireLogin();</script>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar glass-panel">
+      <a class="admin-brand" href="index.html">
+        <img class="brand-mark" src="assets/iem-umpsa-logo.png" alt="IEM UMPSA Student Section logo">
+        <span><strong>IEM UMPSA</strong><small>Student Section</small></span>
+      </a>
+
+      <nav class="side-nav" aria-label="Admin navigation">
+        <button class="side-link active" type="button" data-admin-view="events"><span>▦</span> Events</button>
+        <button class="side-link" type="button" data-admin-view="committee"><span>♙</span> Committee</button>
+        <button class="side-link disabled" type="button" title="Coming later"><span>▧</span> Gallery <em>Soon</em></button>
+        <button class="side-link disabled" type="button" title="Coming later"><span>⚙</span> Settings <em>Soon</em></button>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="note-dot"></span>
+        <div>
+          <strong>Prototype mode</strong>
+          <small>Events and committee data are stored in this browser. Cloud sync comes later.</small>
+        </div>
+      </div>
+
+      <a class="back-link" href="index.html" target="_blank">← Back to website</a>
+    </aside>
+
+    <main class="admin-main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">IEM UMPSA CONTENT MANAGEMENT</p>
+          <h1 id="adminPageTitle">Events Dashboard</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <a class="button secondary" id="viewLiveLink" href="index.html#events">View live website ↗</a>
+          <button class="button logout" id="logoutButton" type="button">Log out</button>
+        </div>
+      </header>
+
+      <!-- EVENTS ADMIN -->
+      <section class="admin-view active" data-view-panel="events">
+        <section class="stats-grid" aria-label="Event statistics">
+          <article class="stat-card glass-panel"><span>Total Events</span><strong id="totalEvents">0</strong><small>Stored in this browser</small></article>
+          <article class="stat-card glass-panel"><span>Upcoming</span><strong id="upcomingEvents">0</strong><small>Based on event date</small></article>
+          <article class="stat-card glass-panel"><span>Past Events</span><strong id="pastEvents">0</strong><small>Moved automatically</small></article>
+          <article class="stat-card glass-panel"><span>Published</span><strong id="publishedEvents">0</strong><small>Visible on public site</small></article>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="editor-card glass-panel" id="editorCard">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">EVENT EDITOR</p>
+                <h2 id="formTitle">Add New Event</h2>
+              </div>
+              <button class="icon-button hidden" id="cancelEdit" type="button" aria-label="Cancel edit">×</button>
+            </div>
+
+            <form id="eventForm">
+              <input type="hidden" id="eventId" />
+
+              <label class="field full">
+                <span>Event Name *</span>
+                <input id="eventTitle" type="text" placeholder="e.g. Revit & BIM Awareness Workshop" required maxlength="100" />
+              </label>
+
+              <div class="field-row">
+                <label class="field">
+                  <span>Event Type</span>
+                  <input id="eventType" type="text" list="eventTypes" placeholder="Technical Workshop" maxlength="60" />
+                  <datalist id="eventTypes">
+                    <option value="Technical Workshop"></option>
+                    <option value="Industrial Visit"></option>
+                    <option value="Engineering Summit"></option>
+                    <option value="Professional Development"></option>
+                    <option value="Competition"></option>
+                    <option value="STEM Outreach"></option>
+                    <option value="Networking"></option>
+                  </datalist>
+                </label>
+
+                <label class="field">
+                  <span>Status Badge</span>
+                  <select id="eventBadge">
+                    <option>Registration Open</option>
+                    <option>Upcoming</option>
+                    <option>Coming Soon</option>
+                    <option>Registration Closed</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="field-row thirds">
+                <label class="field">
+                  <span>Date *</span>
+                  <input id="eventDate" type="date" required />
+                </label>
+                <label class="field">
+                  <span>Time</span>
+                  <input id="eventTime" type="time" />
+                </label>
+                <label class="field">
+                  <span>Location</span>
+                  <input id="eventLocation" type="text" placeholder="UMPSA Gambang" maxlength="80" />
+                </label>
+              </div>
+
+              <label class="field full">
+                <span>Description</span>
+                <textarea id="eventDescription" rows="4" maxlength="420" placeholder="Brief description of the programme..."></textarea>
+                <small><span id="descriptionCount">0</span>/420</small>
+              </label>
+
+              <label class="field full">
+                <span>Registration / Highlight Link</span>
+                <input id="eventLink" type="url" placeholder="https://forms.gle/..." />
+                <small>Optional. Leave blank if there is no external link.</small>
+              </label>
+
+              <div class="upload-field">
+                <div class="upload-copy">
+                  <span>Event Poster / Photo</span>
+                  <small>JPG, PNG or WEBP. The browser will resize large images automatically.</small>
+                  <label class="upload-button" for="eventPoster">Choose Image</label>
+                  <input id="eventPoster" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+                  <button class="text-button hidden" id="removePoster" type="button">Remove image</button>
+                </div>
+                <div class="poster-preview" id="posterPreview"><span>Poster preview</span></div>
+              </div>
+
+              <label class="publish-toggle">
+                <input id="eventPublished" type="checkbox" checked />
+                <span class="toggle-ui"></span>
+                <span><strong>Publish immediately</strong><small>Turn off to save this event as a draft.</small></span>
+              </label>
+
+              <div class="form-actions">
+                <button class="button primary" id="saveEvent" type="submit">Publish Event</button>
+                <button class="button ghost" id="clearForm" type="button">Clear</button>
+              </div>
+              <p class="form-message" id="formMessage" role="status"></p>
+            </form>
+          </div>
+
+          <div class="events-manager glass-panel">
+            <div class="panel-heading list-heading">
+              <div>
+                <p class="eyebrow">MANAGE EVENTS</p>
+                <h2>Published & Drafts</h2>
+              </div>
+              <span class="auto-badge">AUTO DATE SORTING ON</span>
+            </div>
+
+            <div class="filter-row">
+              <button class="filter-chip active" type="button" data-filter="all">All</button>
+              <button class="filter-chip" type="button" data-filter="upcoming">Upcoming</button>
+              <button class="filter-chip" type="button" data-filter="past">Past</button>
+              <button class="filter-chip" type="button" data-filter="draft">Drafts</button>
+            </div>
+
+            <div class="admin-event-list" id="adminEventList">
+              <div class="list-empty">Loading your events...</div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- COMMITTEE ADMIN -->
+      <section class="admin-view" data-view-panel="committee">
+        <section class="stats-grid" aria-label="Committee statistics">
+          <article class="stat-card glass-panel"><span>Filled Positions</span><strong id="filledCommitteePositions">0</strong><small>Named committee members</small></article>
+          <article class="stat-card glass-panel"><span>Vacant / Reserved</span><strong id="vacantCommitteePositions">0</strong><small>Slots ready to be filled</small></article>
+          <article class="stat-card glass-panel"><span>Departments</span><strong id="committeeDepartments">6</strong><small>Engineering & media teams</small></article>
+          <article class="stat-card glass-panel"><span>Current Session</span><strong>26/27</strong><small>Session 2026 / 2027</small></article>
+        </section>
+
+        <section class="committee-workspace-grid">
+          <div class="committee-editor-card glass-panel" id="committeeEditorCard">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">COMMITTEE EDITOR</p>
+                <h2 id="committeeFormTitle">Edit a Position</h2>
+              </div>
+              <button class="icon-button hidden" id="cancelCommitteeEdit" type="button" aria-label="Cancel committee edit">×</button>
+            </div>
+
+            <div class="editor-placeholder" id="committeeEditorPlaceholder">
+              <span>♙</span>
+              <strong>Select a committee position</strong>
+              <p>Choose a Management Team or Department position on the right to edit the name or upload a profile photo.</p>
+            </div>
+
+            <form id="committeeForm" class="hidden">
+              <input type="hidden" id="committeeMemberId" />
+              <input type="hidden" id="committeeMemberFixed" />
+
+              <label class="field full">
+                <span>Full Name</span>
+                <input id="committeeMemberName" type="text" placeholder="Leave blank to keep this position reserved" maxlength="120" />
+                <small>Blank names are treated as vacant / reserved and will not show publicly.</small>
+              </label>
+
+              <div class="field-row">
+                <label class="field">
+                  <span>Group</span>
+                  <select id="committeeMemberGroup">
+                    <option value="management">Management Team</option>
+                    <option value="department">Department</option>
+                  </select>
+                </label>
+
+                <label class="field" id="committeeDepartmentField">
+                  <span>Department</span>
+                  <select id="committeeMemberDepartment"></select>
+                </label>
+              </div>
+
+              <div class="field-row">
+                <label class="field">
+                  <span>Position</span>
+                  <select id="committeeMemberPosition"></select>
+                </label>
+
+                <label class="field">
+                  <span>Display Order</span>
+                  <input id="committeeMemberOrder" type="number" min="1" max="99" value="1" />
+                </label>
+              </div>
+
+              <div class="profile-upload-field">
+                <div class="profile-upload-copy">
+                  <span>Profile Photo</span>
+                  <small>Optional. If no photo is uploaded, the public site displays initials automatically.</small>
+                  <div class="profile-upload-actions">
+                    <label class="upload-button" for="committeePhoto">Choose Photo</label>
+                    <input id="committeePhoto" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+                    <button class="text-button hidden" id="removeCommitteePhoto" type="button">Remove photo</button>
+                  </div>
+                </div>
+
+                <div class="profile-preview" id="committeePhotoPreview"><span>Initials</span></div>
+              </div>
+
+              <label class="publish-toggle">
+                <input id="committeeMemberPublished" type="checkbox" checked />
+                <span class="toggle-ui"></span>
+                <span><strong>Show on public website</strong><small>Turn off to temporarily hide a filled member.</small></span>
+              </label>
+
+              <div class="form-actions committee-form-actions">
+                <button class="button primary" id="saveCommitteeMember" type="submit">Save Changes</button>
+                <button class="button ghost hidden" id="clearCommitteeOccupant" type="button">Clear Occupant</button>
+              </div>
+
+              <p class="form-message" id="committeeFormMessage" role="status"></p>
+            </form>
+          </div>
+
+          <div class="committee-manager glass-panel">
+            <div class="panel-heading committee-manager-heading">
+              <div>
+                <p class="eyebrow">COMMITTEE MANAGEMENT</p>
+                <h2>Session 2026 / 2027</h2>
+              </div>
+              <button class="button primary hidden" id="addCommitteeMember" type="button">+ Add Member</button>
+            </div>
+
+            <div class="committee-manager-toolbar">
+              <div class="filter-row committee-view-filter">
+                <button class="filter-chip active" type="button" data-committee-view="management">Management Team</button>
+                <button class="filter-chip" type="button" data-committee-view="departments">Departments</button>
+              </div>
+
+              <label class="department-filter-wrap hidden" id="departmentFilterWrap">
+                <span>Department</span>
+                <select id="committeeDepartmentFilter"></select>
+              </label>
+            </div>
+
+            <div class="committee-slot-list" id="committeeSlotList">
+              <div class="list-empty">Loading committee...</div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="events-store.js"></script>
+  <script src="committee-store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

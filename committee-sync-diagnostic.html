@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Committee Sync Diagnostic</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; background:#0f1115; color:#e6e6e6; padding:24px; }
+  h1 { font-size: 18px; }
+  .box { background:#1b1f27; border:1px solid #333; border-radius:8px; padding:14px; margin-bottom:16px; }
+  .label { color:#8ab4f8; font-weight:600; margin-bottom:6px; }
+  .ok { color:#7ee787; }
+  .bad { color:#ff7b72; }
+  pre { white-space:pre-wrap; word-break:break-all; font-size:12px; max-height:220px; overflow:auto; background:#0f1115; padding:8px; border-radius:6px; }
+  button { background:#2563eb; color:white; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; margin-right:8px; }
+  #log div { border-bottom:1px solid #2a2f3a; padding:4px 0; font-size:12px; }
+  small { color:#9aa4b2; }
+</style>
+</head>
+<body>
+  <h1>Committee Sync Diagnostic</h1>
+  <p><small>Open this file from the SAME address bar prefix as your admin.html / index.html tabs (e.g. all as file:///... in the same folder, or all as http://127.0.0.1:PORT/...). This page has no dependency on your app code — it talks to the browser's storage directly.</small></p>
+
+  <div class="box">
+    <div class="label">This page's own origin</div>
+    <pre id="origin"></pre>
+  </div>
+
+  <div class="box">
+    <div class="label">Current value of localStorage key "iemUmpsaCommitteeDataV1"</div>
+    <div id="status"></div>
+    <pre id="raw">(reading...)</pre>
+    <button onclick="refresh()">Re-read now</button>
+    <button onclick="clearKey()">Clear this key (reset to defaults on next load)</button>
+  </div>
+
+  <div class="box">
+    <div class="label">Live events received (storage / BroadcastChannel) — edit something in admin and watch this list</div>
+    <div id="log"><small>Waiting for events…</small></div>
+  </div>
+
+  <script>
+    const KEY = 'iemUmpsaCommitteeDataV1';
+    document.getElementById('origin').textContent = location.href;
+
+    function summarize(raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return 'Value exists but is not an array (corrupted).';
+        const withPhoto = parsed.filter(m => m.photo).length;
+        const withName = parsed.filter(m => m.name && m.name.trim()).length;
+        return `${parsed.length} records | ${withName} filled | ${withPhoto} with a photo | ~${(raw.length/1024).toFixed(1)} KB total`;
+      } catch (e) {
+        return 'Could not parse JSON: ' + e.message;
+      }
+    }
+
+    function refresh() {
+      let raw;
+      try {
+        raw = localStorage.getItem(KEY);
+      } catch (e) {
+        document.getElementById('status').innerHTML = '<span class="bad">localStorage is blocked entirely in this context: ' + e.message + '</span>';
+        document.getElementById('raw').textContent = '';
+        return;
+      }
+
+      if (raw === null) {
+        document.getElementById('status').innerHTML = '<span class="bad">Key does not exist yet in this origin\'s storage.</span>';
+        document.getElementById('raw').textContent = '(null)';
+        return;
+      }
+
+      document.getElementById('status').innerHTML = '<span class="ok">' + summarize(raw) + '</span>';
+      document.getElementById('raw').textContent = raw;
+    }
+
+    function clearKey() {
+      localStorage.removeItem(KEY);
+      refresh();
+    }
+
+    function logLine(text, cls) {
+      const log = document.getElementById('log');
+      if (log.querySelector('small')) log.innerHTML = '';
+      const div = document.createElement('div');
+      div.innerHTML = '<span class="' + (cls||'') + '">[' + new Date().toLocaleTimeString() + '] ' + text + '</span>';
+      log.prepend(div);
+    }
+
+    window.addEventListener('storage', e => {
+      if (e.key === KEY) {
+        logLine('storage event received for this key', 'ok');
+        refresh();
+      } else if (e.key) {
+        logLine('storage event for a different key: ' + e.key);
+      }
+    });
+
+    try {
+      const ch = new BroadcastChannel('iem-umpsa-content');
+      ch.addEventListener('message', e => {
+        logLine('BroadcastChannel message received: ' + JSON.stringify(e.data).slice(0,120), 'ok');
+        refresh();
+      });
+      logLine('BroadcastChannel listener attached OK.');
+    } catch (e) {
+      logLine('BroadcastChannel not available: ' + e.message, 'bad');
+    }
+
+    setInterval(refresh, 1500);
+    refresh();
+  </script>
+</body>
+</html>

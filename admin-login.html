@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IEM UMPSA Admin Login</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin-login.css" />
+  <script src="auth.js"></script>
+</head>
+<body>
+  <main class="login-page">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+
+    <a class="back-home" href="index.html">← Back to website</a>
+
+    <section class="login-card glass-panel" aria-labelledby="loginTitle">
+      <div class="login-brand">
+        <img class="brand-mark" src="assets/iem-umpsa-logo.png" alt="IEM UMPSA Student Section logo">
+        <div>
+          <strong>IEM UMPSA</strong>
+          <small>Student Section</small>
+        </div>
+      </div>
+
+      <div class="login-heading">
+        <p class="eyebrow">ADMIN PORTAL</p>
+        <h1 id="loginTitle">Welcome back.</h1>
+        <p>Sign in to manage IEM UMPSA events and website content.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <label>
+          <span>Admin ID</span>
+          <input id="adminId" type="email" autocomplete="username" placeholder="admin@email.com" required />
+        </label>
+
+        <label>
+          <span>Password</span>
+          <div class="password-wrap">
+            <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+            <button id="togglePassword" type="button" aria-label="Show password">Show</button>
+          </div>
+        </label>
+
+        <button class="login-button" id="loginButton" type="submit">Sign in to Admin</button>
+        <p class="login-message" id="loginMessage" role="status"></p>
+      </form>
+
+      <div class="security-note">
+        <span>◈</span>
+        <p><strong>Prototype authentication</strong><br />This login is for the current front-end prototype. Cloud authentication will replace it before production.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin-login.js"></script>
+</body>
+</html>

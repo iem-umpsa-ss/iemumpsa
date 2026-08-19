@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IEM UMPSA Student Section</title>
+  <meta name="description" content="IEM UMPSA Student Section — Engineering, leadership and professional development." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+
+      <nav class="navbar glass" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="IEM UMPSA Home">
+          <img class="brand-mark" src="assets/iem-umpsa-logo.png" alt="IEM UMPSA Student Section logo">
+          <span class="brand-text">
+            <strong>IEM UMPSA</strong>
+            <small>Student Section</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links">
+          <div class="nav-item dropdown">
+            <button class="nav-link dropdown-trigger">Events</button>
+            <div class="dropdown-menu glass">
+              <a href="#events" data-event-tab="upcoming">Upcoming Events</a>
+              <a href="#events" data-event-tab="past">Past Events</a>
+            </div>
+          </div>
+          <a class="nav-link" href="#about">About Us</a>
+          <a class="nav-link" href="#committee">Committee</a>
+          <a class="nav-link" href="#contact">Contact Us</a>
+          <a class="admin-nav-button" href="admin-login.html" aria-label="Open Admin Portal">
+            <span class="admin-nav-icon">⌘</span>
+            <span>Admin</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="hero-content container">
+        <div class="hero-copy">
+          <p class="eyebrow">Institution of Engineers Malaysia UMPSA Student Section</p>
+          <h1>Engineering the <span>next generation.</span></h1>
+          <p class="hero-description">
+            A student-led engineering community connecting UMPSA students with professional development,
+            industry exposure, leadership opportunities and meaningful collaborations.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#events">Explore Events</a>
+            <a class="button button-secondary" href="#about">About IEM UMPSA SS</a>
+          </div>
+        </div>
+
+        <div class="hero-stat-card glass">
+          <div class="stat-badge">2026</div>
+          <p class="stat-title">Growing through engineering & impact</p>
+          <div class="stat-grid">
+            <div><strong>50+</strong><span>Programmes</span></div>
+            <div><strong>500+</strong><span>Participants</span></div>
+            <div><strong>20+</strong><span>Collaborations</span></div>
+            <div><strong>30+</strong><span>Committee Members</span></div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#events" aria-label="Scroll to events">
+        <span>Scroll to discover</span>
+        <b>↓</b>
+      </a>
+    </header>
+
+    <main>
+      <section class="section events-section" id="events">
+        <div class="container">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow dark">Our Programmes</p>
+              <h2>Events that move students forward.</h2>
+            </div>
+            <p class="section-copy">
+              Discover upcoming programmes, technical workshops, site visits, talks and past highlights from IEM UMPSA.
+            </p>
+          </div>
+
+          <div class="event-toolbar glass light-glass">
+            <div class="event-tabs" role="tablist" aria-label="Event categories">
+              <button class="event-tab active" data-tab="upcoming" role="tab">Upcoming Events</button>
+              <button class="event-tab" data-tab="past" role="tab">Past Events</button>
+            </div>
+            <div class="event-count"><span id="eventCount">3</span> events shown</div>
+          </div>
+
+          <div class="events-grid" id="eventGrid">
+            <div class="event-empty">
+              <strong>Loading events...</strong>
+              <span>Your published events will appear here automatically.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <div class="about-backdrop"></div>
+        <div class="container about-layout">
+          <div class="about-intro glass">
+            <p class="eyebrow">About Us</p>
+            <h2>Built by students. Connected to the profession.</h2>
+            <p>
+              IEM UMPSA Student Section provides a platform for engineering students to grow beyond the classroom through
+              technical exposure, professional networks, industry engagement and leadership experience.
+            </p>
+            <a class="text-link light" href="#committee">Meet our committee <span>→</span></a>
+          </div>
+
+          <div class="about-cards">
+            <article class="value-card glass">
+              <span class="value-number">01</span>
+              <h3>Mission</h3>
+              <p>To empower students through engineering knowledge, professional development, industry exposure and leadership opportunities.</p>
+            </article>
+            <article class="value-card glass">
+              <span class="value-number">02</span>
+              <h3>Vision</h3>
+              <p>To nurture competent, connected and responsible future engineers who are prepared to contribute meaningfully to society.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section committee-section" id="committee">
+        <div class="committee-glow committee-glow-one"></div>
+        <div class="committee-glow committee-glow-two"></div>
+        <div class="container committee-container">
+          <div class="section-heading centered committee-heading">
+            <p class="eyebrow dark">Our People</p>
+            <h2>The team behind IEM UMPSA.</h2>
+            <p class="section-copy">Meet the student leaders and departments working together to grow our engineering community.</p>
+            <span class="session-pill">Session 2026 / 2027</span>
+          </div>
+
+          <div class="management-heading">
+            <span class="management-heading-line"></span>
+            <div>
+              <p class="eyebrow dark">Leadership</p>
+              <h3>Management Team</h3>
+            </div>
+            <span class="management-heading-line"></span>
+          </div>
+
+          <div class="leadership-tree" id="managementTeamMount" aria-live="polite">
+            <div class="leadership-chair-wrap">
+              <article class="leadership-card leadership-chair">
+                <div class="committee-avatar chair-avatar">NA</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Chairperson</p>
+                  <h3>Nasriah Aqilah Binti Mohd Nazeri</h3>
+                  <span>Executive Leadership</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="vice-row">
+              <article class="leadership-card">
+                <div class="committee-avatar">MI</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Vice Chairperson · Internal</p>
+                  <h3>Muhammad Iman Hakim Bin Abdullah</h3>
+                  <span>Internal Affairs</span>
+                </div>
+              </article>
+              <article class="leadership-card">
+                <div class="committee-avatar">MT</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Vice Chairperson · External</p>
+                  <h3>Maxwill Tan Jen Hong</h3>
+                  <span>External Affairs</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="executive-row">
+              <article class="leadership-card executive-card">
+                <div class="committee-avatar small-avatar">TJ</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Treasurer</p>
+                  <h3>Teoh Jie Yang</h3>
+                </div>
+              </article>
+              <article class="leadership-card executive-card">
+                <div class="committee-avatar small-avatar">CE</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Vice Treasurer</p>
+                  <h3>Charisma Emerald Sendi Anak Brendan Ullok</h3>
+                </div>
+              </article>
+              <article class="leadership-card executive-card">
+                <div class="committee-avatar small-avatar">TC</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Secretary</p>
+                  <h3>Tay Chia Xin</h3>
+                </div>
+              </article>
+              <article class="leadership-card executive-card">
+                <div class="committee-avatar small-avatar">SP</div>
+                <div class="leadership-copy">
+                  <p class="committee-role">Vice Secretary</p>
+                  <h3>Sujita A/P Prem Kumar</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="department-intro">
+            <div>
+              <p class="eyebrow dark">One team, different strengths.</p>
+              <h3>Departments</h3>
+            </div>
+            <p>Each department is led by its HOD and Assistant HOD, supported by members across different engineering disciplines.</p>
+          </div>
+
+          <div class="department-grid" id="departmentGrid" aria-live="polite">
+            <article class="department-card glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">CE</div>
+                <div><span>Department</span><h3>Civil Engineering</h3></div>
+              </div>
+              <div class="department-leads">
+                <div class="department-person lead-person"><span class="mini-avatar">NE</span><div><small>HOD</small><strong>Nurlisa Elya Binti Nasruddin</strong></div></div>
+                <div class="department-person"><span class="mini-avatar">WL</span><div><small>Asst HOD</small><strong>Wilson Low Kai Jing</strong></div></div>
+              </div>
+              <div class="member-divider"><span>Members</span></div>
+              <div class="member-list">
+                <div class="department-person member-person"><span class="mini-avatar">LJ</span><strong>Leong Jia En</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">YB</span><strong>Yashika A/P Balachandran</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">SS</span><strong>Sweetha A/P Sriraj</strong></div>
+              </div>
+            </article>
+
+            <article class="department-card glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">CH</div>
+                <div><span>Department</span><h3>Chemical Engineering</h3></div>
+              </div>
+              <div class="department-leads">
+                <div class="department-person lead-person"><span class="mini-avatar">SM</span><div><small>HOD</small><strong>Shena Miftahul Haroma Binti Sukardi</strong></div></div>
+                <div class="department-person"><span class="mini-avatar">TG</span><div><small>Asst HOD</small><strong>Thareshiny A/P Gunasegaran</strong></div></div>
+              </div>
+              <div class="member-divider"><span>Members</span></div>
+              <div class="member-list">
+                <div class="department-person member-person"><span class="mini-avatar">CK</span><strong>Chia Kai Chun</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">NH</span><strong>Nicholas Henry</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">KR</span><strong>Kesavaaraj A/L Rajentharan</strong></div>
+              </div>
+            </article>
+
+            <article class="department-card glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">ME</div>
+                <div><span>Department</span><h3>Mechanical &amp; Mechatronic Engineering</h3></div>
+              </div>
+              <div class="department-leads">
+                <div class="department-person lead-person"><span class="mini-avatar">HR</span><div><small>HOD</small><strong>Haemabarathi A/P Ramachandran</strong></div></div>
+                <div class="department-person"><span class="mini-avatar">HW</span><div><small>Asst HOD</small><strong>Ho Wen Tao</strong></div></div>
+              </div>
+              <div class="member-divider"><span>Members</span></div>
+              <div class="member-list reserved-space" aria-label="Reserved positions"></div>
+            </article>
+
+            <article class="department-card department-card-empty glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">EE</div>
+                <div><span>Department</span><h3>Electrical &amp; Electronics Engineering</h3></div>
+              </div>
+              <div class="empty-department-space" aria-label="Reserved positions"></div>
+            </article>
+
+            <article class="department-card glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">PR</div>
+                <div><span>Department</span><h3>Publicity</h3></div>
+              </div>
+              <div class="department-leads">
+                <div class="department-person lead-person"><span class="mini-avatar">TC</span><div><small>HOD</small><strong>Thibanu A/P Chandran</strong></div></div>
+                <div class="department-person"><span class="mini-avatar">SB</span><div><small>Asst HOD</small><strong>Siti Bainun Binti Mohamad</strong></div></div>
+              </div>
+              <div class="member-divider"><span>Members</span></div>
+              <div class="member-list">
+                <div class="department-person member-person"><span class="mini-avatar">VS</span><strong>Vindhya A/P Siva</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">LA</span><strong>Lee Ann</strong></div>
+              </div>
+            </article>
+
+            <article class="department-card glass light-glass">
+              <div class="department-header">
+                <div class="department-icon">MM</div>
+                <div><span>Department</span><h3>Multimedia</h3></div>
+              </div>
+              <div class="department-leads">
+                <div class="department-person lead-person"><span class="mini-avatar">MV</span><div><small>HOD</small><strong>Maithili A/P Vijayandran</strong></div></div>
+                <div class="department-person"><span class="mini-avatar">MY</span><div><small>Asst HOD</small><strong>Muhammad Yamin Bin Mohd Asri</strong></div></div>
+              </div>
+              <div class="member-divider"><span>Members</span></div>
+              <div class="member-list">
+                <div class="department-person member-person"><span class="mini-avatar">FI</span><strong>Fatin Ila Nabila Binti Mah Hussin</strong></div>
+                <div class="department-person member-person"><span class="mini-avatar">SS</span><strong>Sharvina Santhara Sageran</strong></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="contact-orb"></div>
+        <div class="container contact-layout">
+          <div class="contact-copy">
+            <p class="eyebrow">Contact Us</p>
+            <h2>Let’s build something meaningful together.</h2>
+            <p>Have a collaboration, programme, sponsorship or engineering initiative in mind? Reach out to IEM UMPSA Student Section.</p>
+
+            <div class="contact-list">
+              <a href="mailto:iem@umpsa.edu.my"><span>✉</span><div><small>Email</small><strong>iem@umpsa.edu.my</strong></div></a>
+              <a href="https://www.instagram.com/iemumpsass/" target="_blank" rel="noopener noreferrer"><span>◎</span><div><small>Instagram</small><strong>@iemumpsass</strong></div></a>
+              <div><span>⌖</span><div><small>Location</small><strong>Universiti Malaysia Pahang Al-Sultan Abdullah, 26600 Pekan, Pahang, Malaysia</strong></div></div>
+            </div>
+          </div>
+
+          <form class="contact-form glass" action="https://formsubmit.co/iem@umpsa.edu.my" method="POST">
+            <input type="hidden" name="_subject" value="New IEM UMPSA Website Enquiry" />
+            <input type="hidden" name="_template" value="table" />
+            <div class="field-grid">
+              <label>Name<input type="text" name="name" placeholder="Your name" autocomplete="name" required /></label>
+              <label>Email<input type="email" name="email" placeholder="you@email.com" autocomplete="email" required /></label>
+            </div>
+            <label>Subject<input type="text" name="subject" placeholder="What would you like to discuss?" required /></label>
+            <label>Message<textarea rows="5" name="message" placeholder="Tell us a little about your enquiry..." required></textarea></label>
+            <button class="button button-primary full" id="sendButton" type="submit">Send Message</button>
+            <p class="form-note" id="formNote">Your enquiry will be sent to <strong>iem@umpsa.edu.my</strong>.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img class="brand-mark" src="assets/iem-umpsa-logo.png" alt="IEM UMPSA Student Section logo">
+          <div><strong>IEM UMPSA Student Section</strong><small>Engineering • Leadership • Impact</small></div>
+        </div>
+        <div class="footer-links">
+          <a href="#events">Events</a>
+          <a href="#about">About Us</a>
+          <a href="#committee">Committee</a>
+          <a href="#contact">Contact Us</a>
+          <a href="admin-login.html" target="_blank" rel="noopener">Admin Portal</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">© 2026 IEM UMPSA Student Section. Website Prototype v2.</div>
+    </footer>
+  </div>
+
+  <script src="events-store.js"></script>
+  <script src="committee-store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
